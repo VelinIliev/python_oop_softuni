@@ -5,11 +5,13 @@ def outer():
     x = "local"
 
     def inner():
+        nonlocal x
         x = "nonlocal"
         print(f"inner: {x}")
 
     def change_global():
-        x = "global : changed!"
+        global x
+        x = "global: changed!"
 
     print(f'outer: {x}')
     inner()
