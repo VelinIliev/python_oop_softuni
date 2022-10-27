@@ -41,4 +41,3 @@ class Trainer:
 # print(trainer.release_pokemon("Pikachu"))
 # print(trainer.trainer_data())
 
-# TODO: not ready
