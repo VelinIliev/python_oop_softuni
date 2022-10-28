@@ -3,24 +3,24 @@ from project.player import Player
 
 class Guild:
     def __init__(self, name: str):
-        self.name = name
-        self.players = []
+        name = name
+        players = []
 
     def assign_player(self, player: Player):
         if player.guild == "Unaffiliated":
-            self.players.append(player)
-            player.guild = self.name
-            return f'Welcome player {player.name} to the guild {self.name}'
-        elif player.guild == self.name:
+            players.append(player)
+            player.guild = name
+            return f'Welcome player {player.name} to the guild {name}'
+        elif player.guild == name:
             return f'Player {player.name} is already in the guild.'
         else:
             return f'Player {player.name} is in another guild.'
 
     def kick_player(self, player_name: str):
         found_player = False
-        for i, player in enumerate(self.players):
+        for i, player in enumerate(players):
             if player_name == player.name:
-                self.players.pop(i)
+                players.pop(i)
                 player.guild = 'Unaffiliated'
                 found_player = True
                 return f'Player {player_name} has been removed from the guild.'
@@ -29,9 +29,9 @@ class Guild:
 
     def guild_info(self):
         return_string = ""
-        return_string += f'Guild: {self.name}\n'
-        # print(self.players)
-        for player in self.players:
+        return_string += f'Guild: {name}\n'
+        # print(players)
+        for player in players:
             return_string += f'{player.player_info()}'
         return return_string
 

@@ -1,36 +1,36 @@
 class PizzaDelivery:
     def __init__(self, name: str, price: float, ingredients: dict):
-        self.name = name
-        self.price = price
-        self.ingredients = ingredients
-        self.ordered = False
+        name = name
+        price = price
+        ingredients = ingredients
+        ordered = False
 
     def add_extra(self, ingredient: str, quantity: int, price_per_quantity: float):
-        if self.ordered:
-            return f"Pizza {self.name} already prepared, and we can't make any changes!"
-        if ingredient in self.ingredients:
-            self.ingredients[ingredient] += quantity
+        if ordered:
+            return f"Pizza {name} already prepared, and we can't make any changes!"
+        if ingredient in ingredients:
+            ingredients[ingredient] += quantity
         else:
-            self.ingredients[ingredient] = quantity
+            ingredients[ingredient] = quantity
 
-        self.price += quantity * price_per_quantity
+        price += quantity * price_per_quantity
 
     def remove_ingredient(self, ingredient: str, quantity: int, price_per_quantity: float):
-        if self.ordered:
-            return f"Pizza {self.name} already prepared, and we can't make any changes!"
-        if ingredient not in self.ingredients:
-            return f'Wrong ingredient selected! We do not use {ingredient} in {self.name}!'
-        elif ingredient in self.ingredients:
-            if self.ingredients[ingredient] - quantity < 0:
+        if ordered:
+            return f"Pizza {name} already prepared, and we can't make any changes!"
+        if ingredient not in ingredients:
+            return f'Wrong ingredient selected! We do not use {ingredient} in {name}!'
+        elif ingredient in ingredients:
+            if ingredients[ingredient] - quantity < 0:
                 return f'Please check again the desired quantity of {ingredient}!'
             else:
-                self.ingredients[ingredient] -= quantity
-                self.price -= quantity * price_per_quantity
+                ingredients[ingredient] -= quantity
+                price -= quantity * price_per_quantity
 
     def make_order(self):
-        self.ordered = True
-        return f"You've ordered pizza {self.name} prepared with {', '.join(f'{k}: {v}' for k,v in self.ingredients.items())} " \
-               f"and the price will be {self.price}lv."
+        ordered = True
+        return f"You've ordered pizza {name} prepared with {', '.join(f'{k}: {v}' for k,v in ingredients.items())} " \
+               f"and the price will be {price}lv."
 
 margarita = PizzaDelivery('Margarita', 11, {'cheese': 2, 'tomatoes': 1})
 margarita.add_extra('mozzarella', 1, 0.5)

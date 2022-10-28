@@ -1,7 +1,7 @@
 class Pokemon:
     def __init__(self, name: str, health: int):
-        self.name = name
-        self.health = health
+        name = name
+        health = health
 
     def pokemon_details(self):
-        return f'{self.name} with health {self.health}'
+        return f'{name} with health {health}'

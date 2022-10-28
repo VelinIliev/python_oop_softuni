@@ -7,9 +7,9 @@ class Cake(Dessert):
     PRICE = 5
 
     def __init__(self, name: str):
-        super().__init__(name, self.PRICE, self.GRAMS, self.CALORIES)
-        self.__calories = self.CALORIES
+        super().__init__(name, PRICE, GRAMS, CALORIES)
+        __calories = CALORIES
 
     @property
     def calories(self):
-        return self.__calories
+        return __calories

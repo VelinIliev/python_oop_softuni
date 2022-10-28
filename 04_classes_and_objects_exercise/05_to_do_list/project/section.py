@@ -3,21 +3,21 @@ from project.task import Task
 
 class Section:
     def __init__(self, name:str):
-        self.name = name
-        self.tasks = []
+        name = name
+        tasks = []
 
     def add_task(self, new_task: Task):
         tasks_list = []
-        for x in self.tasks:
+        for x in tasks:
             tasks_list.append(x.name)
         if new_task.name in tasks_list:
-            return f'Task is already in the section {self.name}'
+            return f'Task is already in the section {name}'
         else:
-            self.tasks.append(new_task)
+            tasks.append(new_task)
             return f'Task {new_task.details()} is added to the section'
 
     def complete_task(self, task_name: str):
-        for task in self.tasks:
+        for task in tasks:
             if task.name == task_name:
                 task.completed = True
                 return f'Completed task {task_name}'
@@ -26,18 +26,18 @@ class Section:
     def clean_section(self):
         count = 0
         tasks_to_remove = []
-        for i, task in enumerate(self.tasks):
+        for i, task in enumerate(tasks):
             if task.completed:
                 tasks_to_remove.append(i)
         while tasks_to_remove:
-            self.tasks.pop(tasks_to_remove.pop())
+            tasks.pop(tasks_to_remove.pop())
             count += 1
         return f"Cleared {count} tasks."
 
     def view_section(self):
         return_string = ""
-        return_string += f'Section {self.name}:\n'
-        for task in self.tasks:
+        return_string += f'Section {name}:\n'
+        for task in tasks:
             return_string += f'{task.details()}\n'
         return return_string
 

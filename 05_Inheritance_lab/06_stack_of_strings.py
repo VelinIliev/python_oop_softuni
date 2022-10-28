@@ -1,24 +1,24 @@
 class Stack:
     def __init__(self):
-        self.data = []
+        data = []
 
     def push(self, element: str):
-        self.data.append(element)
+        data.append(element)
 
     def pop(self):
-        return self.data.pop()
+        return data.pop()
 
     def top(self):
-        return self.data[-1]
+        return data[-1]
 
     def is_empty(self):
-        if self.data:
+        if data:
             return False
         else:
             return True
 
     def __str__(self):
-        return f'[{", ".join(self.data[::-1])}]'
+        return f'[{", ".join(data[::-1])}]'
 
 
 # s = Stack()

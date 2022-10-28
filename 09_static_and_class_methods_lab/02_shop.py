@@ -1,35 +1,36 @@
 class Shop:
     def __init__(self, name: str, type: str, capacity: int):
-        self.name = name
-        self.type = type
-        self.capacity = capacity
-        self.items = {}
+        name = name
+        type = type
+        capacity = capacity
+        items = {}
 
+    @staticmethod
     def small_shop(name: str, type: str):
         new_shop = Shop(name, type, 10)
         return new_shop
 
     def add_item(self, item_name: str):
-        if item_name in self.items and self.items[item_name] < self.capacity:
-            self.items[item_name] += 1
+        if item_name in items and items[item_name] < capacity:
+            items[item_name] += 1
             return f'{item_name} added to the shop'
-        elif item_name not in self.items:
-            self.items[item_name] = 1
+        elif item_name not in items:
+            items[item_name] = 1
             return f'{item_name} added to the shop'
         else:
             return f'Not enough capacity in the shop'
 
     def remove_item(self, item_name: str, amount: int):
-        if item_name in self.items and self.items[item_name] - amount >= 0:
-            self.items[item_name] -= amount
-            if self.items[item_name] == 0:
-                del self.items[item_name]
+        if item_name in items and items[item_name] - amount >= 0:
+            items[item_name] -= amount
+            if items[item_name] == 0:
+                del items[item_name]
             return f'{amount} {item_name} removed from the shop'
         else:
             return f'Cannot remove {amount} {item_name}'
 
     def __repr__(self):
-        return f'{self.name} of type {self.type} with capacity {self.capacity}'
+        return f'{name} of type {type} with capacity {capacity}'
 
 
 fresh_shop = Shop("Fresh Shop", "Fruit and Veg", 50)

@@ -2,18 +2,18 @@ class Mammal:
     __kingdom = "animals"
 
     def __init__(self, name: str, type: str, sound: str):
-        self.name = name
-        self.type = type
-        self.sound = sound
+        name = name
+        type = type
+        sound = sound
 
     def make_sound(self):
-        return f'{self.name} makes {self.sound}'
+        return f'{name} makes {sound}'
 
     def get_kingdom(self):
-        return self.__kingdom
+        return __kingdom
 
     def info(self):
-        return f'{self.name} is of type {self.type}'
+        return f'{name} is of type {type}'
 
 mammal = Mammal("Dog", "Domestic", "Bark")
 print(mammal.make_sound())

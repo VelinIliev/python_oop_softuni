@@ -6,11 +6,11 @@ class Coffee(HotBeverage):
     PRICE = 3.50
 
     def __init__(self, name: str, caffeine: float):
-        super().__init__(name, self.PRICE, self.MILLILITERS)
-        self.__caffeine = caffeine
+        super().__init__(name, PRICE, MILLILITERS)
+        __caffeine = caffeine
 
     @property
     def caffeine(self):
-        return self.__caffeine
+        return __caffeine
 
 
