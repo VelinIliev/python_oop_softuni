@@ -1,0 +1,57 @@
+from math import ceil
+
+
+class PhotoAlbum():
+    def __init__(self, pages: int):
+        self.pages = pages
+        self.photos = [[] for _ in range(pages)]
+        self.page_length = 4
+
+    @staticmethod
+    def from_photos_count(photos_count: int):
+        pages = ceil(photos_count / 4)
+        return PhotoAlbum(pages)
+
+    def add_photo(self, label: str):
+        for i, page in enumerate(self.photos, 1):
+            if len(page) >= self.page_length:
+                continue
+            else:
+                page.append(label)
+                return f'{label} photo added successfully on page {i} slot {len(self.photos[i-1])}'
+        return f'No more free slots'
+
+    def display(self):
+        return_string = ""
+        return_string += f'{"-"*11}\n'
+        for page in self.photos:
+            return_string += f'{" ".join("[]" for _ in range(len(page)))}\n'
+            return_string += f'{"-"*11}\n'
+        return return_string
+
+# pa = PhotoAlbum(2)
+# print(pa.add_photo("tr"))
+# print(pa.add_photo("tr2"))
+# print(pa.add_photo("tr3"))
+# print(pa.add_photo("tr4"))
+# print(pa.add_photo("tr5"))
+# print(pa.add_photo("tr6"))
+# print(pa.add_photo("tr7"))
+# # print(pa.add_photo("tr8"))
+# # print(pa.add_photo("tr9"))
+# # print(pa.photos)
+# pa.display()
+
+# album = PhotoAlbum(2)
+#
+# print(album.add_photo("baby"))
+# print(album.add_photo("first grade"))
+# print(album.add_photo("eight grade"))
+# print(album.add_photo("party with friends"))
+# print(album.photos)
+# print(album.add_photo("prom"))
+# print(album.add_photo("wedding"))
+#
+# print(album.display())
+
+PhotoAlbum.from_photos_count(13)
