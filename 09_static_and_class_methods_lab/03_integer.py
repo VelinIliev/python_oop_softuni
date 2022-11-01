@@ -42,8 +42,6 @@ class Integer:
 # print(Integer.from_float("2.6"))
 # print(Integer.from_string(2.6))
 
-# TODO: not ready
-
 
 
 
