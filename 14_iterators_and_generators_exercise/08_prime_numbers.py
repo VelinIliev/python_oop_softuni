@@ -10,14 +10,12 @@ def is_prime(num):
 
 
 def get_primes(numbers):
-    for x in numbers:
-        if x == 1:
-            yield x
+    for number in numbers:
+        if number == 1:
+            yield number
         else:
-            if is_prime(x):
-                yield x
-
-
+            if is_prime(number):
+                yield number
 
 
 print(list(get_primes([2, 4, 3, 5, 6, 9, 1, 0, 101, 19, 21, 17])))
