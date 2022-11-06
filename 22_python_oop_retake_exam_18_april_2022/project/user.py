@@ -1,5 +1,5 @@
 class User:
-    def __init__(self, username:str, age: int):
+    def __init__(self, username: str, age: int):
         self.username = username
         self.age = age
         self.movies_liked = []
@@ -28,13 +28,16 @@ class User:
     def __str__(self):
         output_string = ""
         output_string += f"Username: {self.username}, Age: {self.age}\n"
-        if len(self.movies_liked) > 0:
-            output_string += "Liked movies:\n"
-            output_string += "\n".join(x.details for x in self.movies_liked)
-        else:
-            output_string += "No movies liked."
 
+        output_string += "Liked movies:\n"
+        if len(self.movies_liked) > 0:
+            output_string += "\n".join(x.details() for x in self.movies_liked)
+        else:
+            output_string += "No movies liked.\n"
+
+        output_string += "\nOwned movies:\n"
         if len(self.movies_owned) > 0:
-            output_string += "Owned movies:\n"
-            output_string += "\n".join(x.details for x in self.movies_owned)
+            output_string += "\n".join(x.details() for x in self.movies_owned)
+        else:
+            output_string += "No movies owned."
         return output_string
