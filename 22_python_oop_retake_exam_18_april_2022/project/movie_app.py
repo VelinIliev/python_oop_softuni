@@ -1,8 +1,4 @@
-# .6.	Class MovieApp
 from project.user import User
-from project.movie_specification.action import Action
-from project.movie_specification.fantasy import Fantasy
-from project.movie_specification.thriller import Thriller
 from project.movie_specification.movie import Movie
 
 
@@ -72,7 +68,7 @@ class MovieApp:
 
     def dislike_movie(self, username: str, movie: Movie):
         user = self.found_user(username)
-        if movie not in  user.movies_liked:
+        if movie not in user.movies_liked:
             raise Exception(f'{username} has not liked the movie {movie.title}!')
         else:
             movie.likes -= 1
