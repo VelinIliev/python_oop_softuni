@@ -22,6 +22,6 @@ movie2 = Fantasy('The Lord of the Rings', 2003, user2, 14)
 print(movie_app.upload_movie('Alexandra', movie2))
 print(movie_app.display_movies())
 print(movie_app)
-print(user)
+
 
 

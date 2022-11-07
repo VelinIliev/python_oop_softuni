@@ -1,14 +1,13 @@
 from abc import ABC, abstractmethod
-from project.user import User
 
 
 class Movie(ABC):
-    def __init__(self, title: str, year: int, owner: User, age_restriction: int, likes=0):
+    def __init__(self, title, year, owner, age_restriction):
         self.title = title
         self.year = year
         self.owner = owner
         self.age_restriction = age_restriction
-        self.likes = likes
+        self.likes = 0
 
     @property
     def title(self):
@@ -16,8 +15,8 @@ class Movie(ABC):
 
     @title.setter
     def title(self, value):
-        if value == "":
-            raise ValueError("The title cannot be empty string!")
+        if len(value) == 0:
+            raise ValueError('The title cannot be empty string!')
         self.__title = value
 
     @property
@@ -37,9 +36,9 @@ class Movie(ABC):
     @owner.setter
     def owner(self, value):
         if type(value).__name__ != "User":
-            raise ValueError("The owner must be an object of type User!")
+            raise ValueError('The owner must be an object of type User!')
         self.__owner = value
 
     @abstractmethod
     def details(self):
-        return None
+        ...
