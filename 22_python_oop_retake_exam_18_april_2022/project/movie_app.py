@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 from project.user import User
-=======
->>>>>>> @{u}
+
 from project.movie_specification.movie import Movie
 from project.user import User
 
