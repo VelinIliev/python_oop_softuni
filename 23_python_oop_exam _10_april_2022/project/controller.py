@@ -3,7 +3,7 @@ class Controller:
         self.players = []
         self.supplies = []
 
-    def found_player(self, name):
+    def find_player(self, name):
         return next(filter(lambda x: x.name == name, self.players), None)
 
     def find_supply(self, type_of_supply):
@@ -31,10 +31,10 @@ class Controller:
             self.supplies.append(supply)
 
     def sustain(self, player_name: str, sustenance_type: str):
-        player = self.found_player(player_name)
-        if player:
-            if not player.need_sustenance:
-                return f'{player_name} have enough stamina.'
+        player = self.find_player(player_name)
+        if player.stamina == 100:
+            return f'{player_name} have enough stamina.'
+        if sustenance_type == "Food" or sustenance_type == "Drink":
             supply = self.find_supply(sustenance_type)
             if not supply:
                 raise Exception(f'There are no {sustenance_type.lower()} supplies left!')
@@ -44,34 +44,37 @@ class Controller:
                 player.stamina += supply.energy
             return f'{player_name} sustained successfully with {supply.name}.'
 
-    def duel(self, first_player_name: str, second_player_name: str):
-        first_player = self.found_player(first_player_name)
-        second_player = self.found_player(second_player_name)
-        display_strings = []
-        if first_player.stamina == 0:
-            display_strings.append(f'Player {first_player.name} does not have enough stamina.')
-        if second_player.stamina == 0:
-            display_strings.append(f'Player {second_player.name} does not have enough stamina.')
-        if display_strings:
-            return "\n".join(x for x in display_strings)
-        if first_player.stamina < second_player.stamina:
-            second_player.stamina -= first_player.stamina / 2
-            if second_player.stamina <= 0:
-                return f'Winner: {first_player.name}'
-            first_player.stamina -= second_player.stamina / 2
-            if first_player.stamina <= 0:
-                return f'Winner: {second_player.name}'
-        elif second_player.stamina < first_player.stamina:
-            first_player.stamina -= second_player.stamina / 2
-            if first_player.stamina <= 0:
-                return f'Winner: {second_player.name}'
-            second_player.stamina -= first_player.stamina / 2
-            if second_player.stamina <= 0:
-                return f'Winner: {first_player.name}'
-        if first_player.stamina > second_player.stamina:
-            return f'Winner: {first_player.name}'
+    @staticmethod
+    def battle(attacker, defender):
+        defender.stamina -= attacker.stamina / 2
+        if attacker.stamina - defender.stamina / 2 <= 0:
+            attacker.stamina = 0
         else:
-            return f'Winner: {second_player.name}'
+            attacker.stamina -= defender.stamina / 2
+        if attacker.stamina > defender.stamina:
+            return f'Winner: {attacker.name}'
+        else:
+            return f'Winner: {defender.name}'
+
+    @staticmethod
+    def not_ready_players(*players):
+        display_string = []
+        for player in players:
+            if player.stamina == 0:
+                display_string.append(f'Player {player.name} does not have enough stamina.')
+        return "\n".join(display_string)
+
+    def duel(self, first_player_name: str, second_player_name: str):
+        first_player = self.find_player(first_player_name)
+        second_player = self.find_player(second_player_name)
+        not_ready_players = self.not_ready_players(first_player, second_player)
+        if not_ready_players:
+            return not_ready_players
+        if first_player.stamina < second_player.stamina:
+            battle_result = self.battle(first_player, second_player)
+        else:
+            battle_result = self.battle(second_player, first_player)
+        return battle_result
 
     def next_day(self):
         for player in self.players:
@@ -89,4 +92,3 @@ class Controller:
         for supply in self.supplies:
             display_list.append(f'{supply.details()}')
         return "\n".join(display_list)
-

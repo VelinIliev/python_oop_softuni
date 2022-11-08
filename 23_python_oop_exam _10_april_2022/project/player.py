@@ -5,7 +5,6 @@ class Player:
         self.name = name
         self.age = age
         self.stamina = stamina
-        self._need_sustenance = self.check_stamina()
 
     @property
     def name(self):
@@ -41,17 +40,13 @@ class Player:
             raise ValueError('Stamina not valid!')
         self.__stamina = value
 
-    def check_stamina(self):
-        if self.stamina < 100:
-            return True
-        else:
-            return False
-
-    def __str__(self):
-        return f'Player: {self.name}, {self.age}, {self.stamina}, {self.check_stamina()}'
-
     @property
     def need_sustenance(self):
-        return self._need_sustenance
+        return self.__stamina < 100
+
+    def __str__(self):
+        return f'Player: {self.name}, {self.age}, {self.stamina}, {self.need_sustenance}'
+
+
 
 

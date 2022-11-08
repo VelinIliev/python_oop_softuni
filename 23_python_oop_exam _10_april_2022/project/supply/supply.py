@@ -27,4 +27,4 @@ class Supply(ABC):
         self.__energy = value
 
     def details(self):
-        return f'{self.__class__.__name__}: {self.name}, {self.energy}'
+        ...
