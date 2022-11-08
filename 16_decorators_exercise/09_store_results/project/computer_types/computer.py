@@ -15,8 +15,7 @@ class Computer(ABC):
 
     @manufacturer.setter
     def manufacturer(self, value):
-        test_value = value.replace(" ", "")
-        if test_value == "":
+        if not value.strip():
             raise ValueError('Manufacturer name cannot be empty.')
         self.__manufacturer = value
 
@@ -26,8 +25,7 @@ class Computer(ABC):
 
     @model.setter
     def model(self, value):
-        test_value = value.replace(" ", "")
-        if test_value == "":
+        if not value.strip():
             raise ValueError('Model name cannot be empty.')
         self.__model = value
 
