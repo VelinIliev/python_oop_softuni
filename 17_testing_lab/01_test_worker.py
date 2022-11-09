@@ -1,3 +1,6 @@
+
+
+
 class Worker:
     def __init__(self, name, salary, energy):
         self.name = name
@@ -20,13 +23,10 @@ class Worker:
 
 
 import unittest
+from unittest import TestCase, main
 
 
-def test_money_increased_after_work():
-    worker = Worker("Test", 10000, 50)
-
-
-class WorkerTests(unittest.TestCase):
+class WorkerTests(TestCase):
     def test_worker_initialization(self):
         worker = Worker("Test", 10000, 50)
         self.assertEqual("Test", worker.name)
