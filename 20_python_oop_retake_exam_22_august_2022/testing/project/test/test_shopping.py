@@ -17,9 +17,9 @@ class ShoppingCartTests(unittest.TestCase):
         expected = "Shop must contain only letters and must start with capital letter!"
         self.assertEqual(expected, str(ve.exception))
 
-    def test_shop_name_no_capital_numbers(self):
+    def test_shop_name_numbers(self):
         with self.assertRaises(ValueError) as ve:
-            new_sc = ShoppingCart("name23", 200)
+            new_sc = ShoppingCart("Name23", 200)
         expected = "Shop must contain only letters and must start with capital letter!"
         self.assertEqual(expected, str(ve.exception))
 
