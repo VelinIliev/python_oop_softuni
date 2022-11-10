@@ -1,7 +1,7 @@
 # from project.client import Client
 # from project.meals.meal import Meal
 # from project.meals.starter import Starter
-# TODO: Not ready Unit Testing
+
 
 from project.food_orders_app import FoodOrdersApp
 from project.meals.starter import Starter
