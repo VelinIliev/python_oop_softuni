@@ -41,47 +41,78 @@ class IntegerList:
     def get_index(self, el):
         return self.get_data().index(el)
 
+
 from unittest import TestCase, main
 import unittest
 
 
 class IntegerListTests(TestCase):
-    def test_add_integer(self):
+    def test_add_with_correct_data(self):
         il = IntegerList(1, 2, 3)
-        with self.assertRaises(ValueError) as value_error:
-            il.add(2.1)
-        self.assertEqual('Element is not Integer', str(value_error.exception))
+        il.add(4)
+        self.assertEqual([1, 2, 3, 4], il._IntegerList__data)
 
-    def test_remove_index_out_of_range(self):
+    def test_add_with_incorrect_data(self):
         il = IntegerList(1, 2, 3)
-        with self.assertRaises(IndexError) as index_error:
-            il.remove_index(4)
-        self.assertEqual('Index is out of range', str(index_error.exception))
+        with self.assertRaises(ValueError) as ve:
+            il.add(3.2)
+        self.assertEqual('Element is not Integer', str(ve.exception))
 
-    def test_init_taking_only_integers(self):
-        il = IntegerList(1, 2.3, "A", False, None)
-        self.assertEqual([1], il.get_data())
-
-    def test_get_out_of_range(self):
+    def test_remove_index_correct(self):
         il = IntegerList(1, 2, 3)
-        with self.assertRaises(IndexError) as index_error:
-            il.get(4)
-        self.assertEqual('Index is out of range', str(index_error.exception))
+        il.remove_index(2)
+        self.assertEqual([1, 2], il._IntegerList__data)
 
-    def test_insert_out_of_range(self):
+    def test_remove_index_incorrect(self):
         il = IntegerList(1, 2, 3)
-        il.get_data()
-        with self.assertRaises(IndexError) as index_error:
-            il.insert(4, 2)
-        self.assertEqual('Index is out of range', str(index_error.exception))
+        with self.assertRaises(IndexError) as ie:
+            il.remove_index(3)
+        self.assertEqual('Index is out of range', str(ie.exception))
 
-    def test_insert_element_not_integer(self):
+    def test_init_with_correct_input(self):
         il = IntegerList(1, 2, 3)
-        print(il.get_data())
-        with self.assertRaises(ValueError) as value_error:
-            il.insert(1, 2.1)
-        self.assertEqual('Element is not Integer', str(value_error.exception))
+        self.assertEqual([1, 2, 3], il._IntegerList__data)
+
+    def test_init_with_incorrect_input(self):
+        il = IntegerList(2.3, "A", False, None)
+        self.assertEqual([], il._IntegerList__data)
+
+    def test_get_with_correct(self):
+        il = IntegerList(1, 2, 3)
+        self.assertEqual(3, il.get(2))
+
+    def test_get_with_incorrect_data(self):
+        il = IntegerList(1, 2, 3)
+        with self.assertRaises(IndexError) as ie:
+            il.get(3)
+        self.assertEqual('Index is out of range', str(ie.exception))
+
+    def test_insert_correct(self):
+        il = IntegerList(1, 2, 3)
+        il.insert(0, 0)
+        self.assertEqual([0, 1, 2, 3], il._IntegerList__data)
+
+    def test_insert_incorrect_index(self):
+        il = IntegerList(1, 2, 3)
+        with self.assertRaises(IndexError) as ie:
+            il.insert(3, 4)
+        self.assertEqual('Index is out of range', str(ie.exception))
+
+    def test_insert_incorrect_data(self):
+        il = IntegerList(1, 2, 3)
+        with self.assertRaises(ValueError) as ve:
+            il.insert(0, 2.1)
+        self.assertEqual('Element is not Integer', str(ve.exception))
+
+    def test_get_biggest(self):
+        il = IntegerList(1, 2, 3)
+        self.assertEqual(3, il.get_biggest())
+
+    def test_get_index(self):
+        il = IntegerList(1, 2, 3)
+        self.assertEqual(2, il.get_index(3))
 
 
 if __name__ == "__main__":
     unittest.main()
+
