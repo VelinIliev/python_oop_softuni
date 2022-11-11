@@ -35,18 +35,26 @@ class ShoppingCartTests(unittest.TestCase):
         expected = 'Product cheese cost too much!'
         self.assertEqual(expected, str(ve.exception))
 
+    def test_add_to_cart_with_price_error2(self):
+        with self.assertRaises(ValueError) as ve:
+            self.shopping_cart.add_to_cart("cheese", 105)
+        expected = 'Product cheese cost too much!'
+        self.assertEqual(expected, str(ve.exception))
+
+    def test_remove_from_cart_non_existing_product(self):
+        self.shopping_cart.add_to_cart("meat", 3)
+        with self.assertRaises(ValueError) as ve:
+            self.shopping_cart.remove_from_cart("cheese")
+        expected = 'No product with name cheese in the cart!'
+        self.assertEqual(expected, str(ve.exception))
+
     def test_remove_from_cart_correct(self):
         self.shopping_cart.add_to_cart("cheese", 2)
+        self.shopping_cart.add_to_cart("meat", 3)
         expected = 'Product cheese was successfully removed from the cart!'
         actual = self.shopping_cart.remove_from_cart("cheese")
         self.assertEqual(expected, actual)
-        self.assertEqual({}, self.shopping_cart.products)
-
-    def test_remove_from_cart_non_existing_product(self):
-        with self.assertRaises(ValueError) as ve:
-            self.shopping_cart.remove_from_cart("hot dog")
-        expected = 'No product with name hot dog in the cart!'
-        self.assertEqual(expected, str(ve.exception))
+        self.assertEqual({"meat": 3}, self.shopping_cart.products)
 
     def test__add__(self):
         shopping_cart_2 = ShoppingCart("NameTwo", 300)
@@ -72,6 +80,14 @@ class ShoppingCartTests(unittest.TestCase):
             self.shopping_cart.buy_products()
         expected = 'Not enough money to buy the products! Over budget with 1.00lv!'
         self.assertEqual(expected, str(ve.exception))
+
+    def test_buy_product_eq_to_budget(self):
+        self.shopping_cart.add_to_cart("cheese", 99)
+        self.shopping_cart.add_to_cart("meat", 99)
+        self.shopping_cart.add_to_cart("food", 2)
+        expected = 'Products were successfully bought! Total cost: 200.00lv.'
+        actual = self.shopping_cart.buy_products()
+        self.assertEqual(expected, actual)
 
 
 if __name__ == "__main__":
