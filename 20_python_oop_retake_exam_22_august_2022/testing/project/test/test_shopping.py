@@ -92,5 +92,3 @@ class ShoppingCartTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-# TODO: Not ready 92/100
