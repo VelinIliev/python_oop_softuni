@@ -4,8 +4,6 @@ from project.horse_specification.thoroughbred import Thoroughbred
 from project.horse_race import HorseRace
 from project.horse_race_app import HorseRaceApp
 
-# TODO: Not ready Unit Testing
-
 horseRaceApp = HorseRaceApp()
 print(horseRaceApp.add_horse("Appaloosa", "Spirit", 80))
 print(horseRaceApp.add_horse("Thoroughbred", "Rocket", 110))
