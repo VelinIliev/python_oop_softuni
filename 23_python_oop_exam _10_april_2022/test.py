@@ -3,7 +3,6 @@ from project.player import Player
 from project.supply.drink import Drink
 from project.supply.food import Food
 
-# TODO: Not ready Unit Testing
 controller = Controller()
 apple = Food("apple", 22)
 cheese = Food("cheese")
