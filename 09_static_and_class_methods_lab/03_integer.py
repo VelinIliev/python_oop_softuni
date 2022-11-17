@@ -1,6 +1,6 @@
 class Integer:
     def __init__(self, value: int):
-        value = value
+        self.value = value
 
     @staticmethod
     def from_float(float_value):
