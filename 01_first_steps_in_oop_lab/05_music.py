@@ -1,14 +1,14 @@
 class Music:
     def __init__(self, title: str, artist: str, lyrics: str):
-        title = title
-        artist = artist
-        lyrics = lyrics
+        self.title = title
+        self.artist = artist
+        self.lyrics = lyrics
 
     def print_info(self):
-        return f'This is "{title}" from "{artist}"'
+        return f'This is "{self.title}" from "{self.artist}"'
 
     def play(self):
-        return lyrics
+        return self.lyrics
 
 
 song = Music("Title", "Artist", "Lyrics")

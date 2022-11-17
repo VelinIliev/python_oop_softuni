@@ -4,29 +4,29 @@ class Time:
     max_seconds = 59
 
     def __init__(self, hours: int, minutes: int, seconds: int):
-        hours = hours
-        minutes = minutes
-        seconds = seconds
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
 
     def set_time(self, hours: int, minutes: int, seconds: int):
-        hours = hours
-        minutes = minutes
-        seconds = seconds
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
 
     def get_time(self):
-        return f'{hours:02d}:{minutes:02d}:{seconds:02d}'
+        return f'{self.hours:02d}:{self.minutes:02d}:{self.seconds:02d}'
 
     def next_second(self):
-        seconds += 1
-        if seconds > max_seconds:
-            seconds = 0
-            minutes += 1
-        if minutes > max_minutes:
-            minutes = 0
-            hours +=1
-        if hours > max_hours:
-            hours = 0
-        return get_time()
+        self.seconds += 1
+        if self.seconds > self.max_seconds:
+            self.seconds = 0
+            self.minutes += 1
+        if self.minutes > self.max_minutes:
+            self.minutes = 0
+            self.hours += 1
+        if self.hours > self.max_hours:
+            self.hours = 0
+        return self.get_time()
 
 
 # time = Time(9, 30, 59)
@@ -37,4 +37,3 @@ class Time:
 
 time = Time(23, 59, 59)
 print(time.next_second())
-

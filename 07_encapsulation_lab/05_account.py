@@ -1,18 +1,18 @@
 class Account:
     def __init__(self, id: int, balance: int, pin: int):
-        __id = id
-        balance = balance
-        __pin = pin
+        self.__id = id
+        self.balance = balance
+        self.__pin = pin
 
     def get_id(self, pin):
-        if pin != __pin:
+        if pin != self.__pin:
             return f'Wrong pin'
         else:
-            return __id
+            return self.__id
 
     def change_pin(self, old_pin, new_pin):
-        if old_pin == __pin:
-            __pin = new_pin
+        if old_pin == self.__pin:
+            self.__pin = new_pin
             return f'Pin changed'
         else:
             return f'Wrong pin'

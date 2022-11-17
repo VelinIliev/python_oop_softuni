@@ -1,8 +1,8 @@
 class Book:
     def __init__(self, name: str, author: str, pages: int):
-        name = name
-        author = author
-        pages = pages
+        self.name = name
+        self.author = author
+        self.pages = pages
 
 
 book = Book("My Book", "Me", 200)

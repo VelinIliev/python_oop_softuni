@@ -1,19 +1,19 @@
 class Flower:
     def __init__(self, name: str, water_requirements: int):
-        name = name
-        water_requirements = water_requirements
-        is_happy = False
+        self.name = name
+        self.water_requirements = water_requirements
+        self.is_happy = False
 
     def water(self, quantity: int):
-        is_happy = quantity >= water_requirements
+        self.is_happy = quantity >= self.water_requirements
 
     def status(self):
         status = ""
-        if is_happy:
+        if self.is_happy:
             status = "is happy"
         else:
             status = "is not happy"
-        return f'{name} {status}'
+        return f'{self.name} {status}'
 
 
 flower = Flower("Lilly", 100)

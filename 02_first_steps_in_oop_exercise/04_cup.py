@@ -1,14 +1,14 @@
 class Cup:
     def __init__(self, size: int, quantity: int):
-        size = size
-        quantity = quantity
+        self.size = size
+        self.quantity = quantity
 
     def fill(self, milliliters: int):
-        if quantity + milliliters <= size:
-            quantity += milliliters
+        if self.quantity + milliliters <= self.size:
+            self.quantity += milliliters
 
     def status(self):
-        free_space = size - quantity
+        free_space = self.size - self.quantity
         return free_space
 
 cup = Cup(100, 50)

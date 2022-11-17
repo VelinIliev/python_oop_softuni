@@ -1,5 +1,5 @@
-from topping import Topping
-from dough import Dough
+from project.topping import Topping
+from project.dough import Dough
 
 
 class Pizza:
@@ -10,49 +10,49 @@ class Pizza:
         #     raise ValueError("You should add dough to the pizza")
         # if toppings_capacity <= 0:
         #     raise ValueError("The topping's capacity cannot be less or equal to zero")
-        name = name
-        dough = dough
-        toppings_capacity = toppings_capacity
-        toppings = {}
+        self.name = name
+        self.dough = dough
+        self.toppings_capacity = toppings_capacity
+        self.toppings = {}
 
     @property
     def name(self):
-        return __name
+        return self.__name
 
     @name.setter
     def name(self, value):
         if not value:
             raise ValueError("The name cannot be an empty string")
-        __name = value
+        self.__name = value
 
     @property
     def dough(self):
-        return __dough
+        return self.__dough
 
     @dough.setter
     def dough(self, value):
         if value is None:
             raise ValueError("You should add dough to the pizza")
-        __dough = value
+        self.__dough = value
 
     @property
     def toppings_capacity(self):
-        return __toppings_capacity
+        return self.__toppings_capacity
 
     @toppings_capacity.setter
     def toppings_capacity(self, value):
         if value <= 0:
             raise ValueError("The topping's capacity cannot be less or equal to zero")
-        __toppings_capacity = value
+        self.__toppings_capacity = value
 
     def add_topping(self, topping: Topping):
-        if len(toppings) == toppings_capacity:
+        if len(self.toppings) == self.toppings_capacity:
             raise ValueError(f'Not enough space for another topping')
-        if topping.topping_type in toppings:
-            toppings[topping.topping_type] += topping.weight
+        if topping.topping_type in self.toppings:
+            self.toppings[topping.topping_type] += topping.weight
         else:
-            toppings[topping.topping_type] = topping.weight
+            self.toppings[topping.topping_type] = topping.weight
 
     def calculate_total_weight(self):
-        total_weight = dough.weight + sum(toppings.values())
+        total_weight = self.dough.weight + sum(self.toppings.values())
         return total_weight

@@ -1,8 +1,8 @@
 class Hero:
     def __init__(self, username: str, level: int):
-        username = username
-        level = level
+        self.username = username
+        self.level = level
 
     def __str__(self):
-        return f'{username} of type {__class__.__name__} has level {level}'
+        return f'{self.username} of type {__class__.__name__} has level {self.level}'
 

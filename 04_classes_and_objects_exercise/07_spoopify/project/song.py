@@ -1,8 +1,8 @@
 class Song:
     def __init__(self, name: str, length: float, single: bool):
-        name = name
-        length = length
-        single = single
+        self.name = name
+        self.length = length
+        self.single = single
 
     def get_info(self):
-        return f"{name} - {length}"
+        return f"{self.name} - {self.length}"

@@ -1,14 +1,14 @@
 class Product:
     def __init__(self, name: str, quantity: int):
-        name = name
-        quantity = quantity
+        self.name = name
+        self.quantity = quantity
 
     def decrease(self, quantity: int):
-        if quantity - quantity >= 0:
-            quantity -= quantity
+        if self.quantity - quantity >= 0:
+            self.quantity -= quantity
 
     def increase(self, quantity: int):
-        quantity += quantity
+        self.quantity += quantity
 
     def __repr__(self):
-        return name
+        return self.name

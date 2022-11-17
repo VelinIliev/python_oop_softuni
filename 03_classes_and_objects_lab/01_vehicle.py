@@ -1,8 +1,8 @@
 class Vehicle:
     def __init__(self, mileage, max_speed=150):
-        max_speed = max_speed
-        mileage = mileage
-        gadgets = []
+        self.max_speed = max_speed
+        self.mileage = mileage
+        self.gadgets = []
 
 
 car = Vehicle(20)

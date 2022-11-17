@@ -1,3 +1,3 @@
 class Animal:
     def __init__(self, name: str):
-        name = name
+        self.name = name

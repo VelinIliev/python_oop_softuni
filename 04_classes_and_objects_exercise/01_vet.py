@@ -3,20 +3,20 @@ class Vet:
     space = 5
 
     def __init__(self, name: str):
-        name = name
-        animals = []
+        self.name = name
+        self.animals = []
 
     def register_animal(self, animal_name: str):
         if len(Vet.animals) < Vet.space:
-            animals.append(animal_name)
+            self.animals.append(animal_name)
             Vet.animals.append(animal_name)
             return f'{animal_name} registered in the clinic'
         else:
             return "Not enough space"
 
     def unregister_animal(self, animal_name: str):
-        if animal_name in animals and animal_name in Vet.animals:
-            animals.remove(animal_name)
+        if animal_name in self.animals and animal_name in Vet.animals:
+            self.animals.remove(animal_name)
             Vet.animals.remove(animal_name)
             return f'{animal_name} unregistered successfully'
         else:
@@ -24,7 +24,7 @@ class Vet:
 
     def info(self):
         space_left = Vet.space - len(Vet.animals)
-        return f'{name} has {len(animals)} animals. {space_left} space left in clinic'
+        return f'{self.name} has {len(self.animals)} animals. {space_left} space left in clinic'
 
 
 # peter = Vet("Peter")
