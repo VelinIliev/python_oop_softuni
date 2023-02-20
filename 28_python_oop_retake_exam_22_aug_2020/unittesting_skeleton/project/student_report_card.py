@@ -23,7 +23,7 @@ class StudentReportCard:
 
     @school_year.setter
     def school_year(self, value):
-        if not 1 <= value <= 12:
+        if not 1 <= value < 12:
             raise ValueError("School Year must be between 1 and 12!")
         self.__school_year = value
 

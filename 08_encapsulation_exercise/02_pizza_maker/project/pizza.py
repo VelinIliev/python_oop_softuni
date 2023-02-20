@@ -3,17 +3,13 @@ from project.dough import Dough
 
 
 class Pizza:
+
     def __init__(self, name: str, dough: Dough, toppings_capacity: int):
-        # if name == "":
-        #     raise ValueError("The name cannot be an empty string")
-        # if dough is None:
-        #     raise ValueError("You should add dough to the pizza")
-        # if toppings_capacity <= 0:
-        #     raise ValueError("The topping's capacity cannot be less or equal to zero")
         self.name = name
         self.dough = dough
         self.toppings_capacity = toppings_capacity
         self.toppings = {}
+        self.max_number_of_toppings = toppings_capacity
 
     @property
     def name(self):
