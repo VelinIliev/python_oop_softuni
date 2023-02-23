@@ -1,32 +1,26 @@
 from project.pokemon import Pokemon
 
-
 class Trainer:
     def __init__(self, name: str):
         self.name = name
         self.pokemons = []
 
     def add_pokemon(self, pokemon):
-        pokemons_list = [x.name for x in self.pokemons]
-        if pokemon.name in pokemons_list:
+        if pokemon in self.pokemons:
             return f'This pokemon is already caught'
-        else:
-            self.pokemons.append(pokemon)
-            return f'Caught {pokemon.pokemon_details()}'
+        self.pokemons.append(pokemon)
+        return f'Caught {pokemon.pokemon_details()}'
 
     def release_pokemon(self, pokemon_name: str):
-        for i, x in enumerate(self.pokemons):
-            if x.name == pokemon_name:
-                self.pokemons.pop(i)
-                return f'You have released {pokemon_name}'
+        pokemon = next(filter(lambda x: x.name == pokemon_name, self.pokemons), 0)
+        if pokemon:
+            self.pokemons.remove(pokemon)
+            return f'You have released {pokemon_name}'
         return f'Pokemon is not caught'
 
     def trainer_data(self):
-        return_string = ""
-        return_string += f'Pokemon Trainer {self.name}\n'
-        return_string += f'Pokemon count {len(self.pokemons)}\n'
-        for data in self.pokemons:
-            return_string += f'- {data.pokemon_details()}\n'
-        return return_string
+        output = [f'Pokemon Trainer {self.name}', f'Pokemon count {len(self.pokemons)}']
+        [output.append(f'- {pokemon.pokemon_details()}') for pokemon in self.pokemons]
+        return '\n'.join(output)
 
 
