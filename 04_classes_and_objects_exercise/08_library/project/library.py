@@ -16,10 +16,10 @@ class Library:
             else:
                 self.rented_books[user.username] = {book_name: days_to_return}
             return f'{book_name} successfully rented for the next {days_to_return} days!'
-        else:
-            for name, v in self.rented_books.items():
-                if book_name in v:
-                    return f'The book "{book_name}" is already rented and will be available in {v[book_name]} days!'
+
+        for name, v in self.rented_books.items():
+            if book_name in v:
+                return f'The book "{book_name}" is already rented and will be available in {v[book_name]} days!'
 
     def return_book(self, author: str, book_name: str, user: User):
         if book_name in self.rented_books[user.username]:

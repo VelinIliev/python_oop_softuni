@@ -12,8 +12,7 @@ class Account:
         if self.balance - amount >= 0:
             self.balance -= amount
             return self.balance
-        else:
-            return f'Amount exceeded balance'
+        return f'Amount exceeded balance'
 
     def info(self):
         return f'User {self.name} with account {self.id} has {self.balance} balance'

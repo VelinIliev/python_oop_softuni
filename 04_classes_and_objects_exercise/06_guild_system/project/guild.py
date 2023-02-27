@@ -13,29 +13,24 @@ class Guild:
             return f'Welcome player {player.name} to the guild {self.name}'
         elif player.guild == self.name:
             return f'Player {player.name} is already in the guild.'
-        else:
-            return f'Player {player.name} is in another guild.'
+
+        return f'Player {player.name} is in another guild.'
 
     def kick_player(self, player_name: str):
-        for i, player in enumerate(self.players):
-            if player_name == player.name:
-                self.players.pop(i)
-                player.guild = 'Unaffiliated'
-                return f'Player {player_name} has been removed from the guild.'
+        player = next(filter(lambda x: x.name == player_name, self.players), 0)
+        if player:
+            self.players.remove(player)
+            player.guild = 'Unaffiliated'
+            return f'Player {player_name} has been removed from the guild.'
+
         return f'Player {player_name} is not in the guild.'
 
     def guild_info(self):
-        return_string = ""
-        return_string += f'Guild: {self.name}\n'
+        output = [f'Guild: {self.name}']
         for player in self.players:
-            return_string += f'{player.player_info()}'
-        return return_string
+            output.append(f'{player.player_info()}')
+        return '\n'.join(output)
 
 
-player = Player("George", 50, 100)
-print(player.add_skill("Shield Break", 20))
-print(player.player_info())
-guild = Guild("UGT")
-print(guild.assign_player(player))
-print(guild.guild_info())
+
 
