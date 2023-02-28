@@ -9,26 +9,23 @@ class Album:
     def add_song(self, song: Song):
         if song.single:
             return f"Cannot add {song.name}. It's a single"
-        elif self.published:
+        if self.published:
             return f'Cannot add songs. Album is published.'
+
+        if song in self.songs:
+            return f'Song is already in the album.'
         else:
-            already_in_album = False
-            for x in self.songs:
-                if x.name == song.name:
-                    already_in_album = True
-            if already_in_album:
-                return f'Song is already in the album.'
-            else:
-                self.songs.append(song)
-                return f'Song {song.name} has been added to the album {self.name}.'
+            self.songs.append(song)
+            return f'Song {song.name} has been added to the album {self.name}.'
 
     def remove_song(self, song_name: str):
         if self.published:
             return f'Cannot remove songs. Album is published.'
-        for i, x in enumerate(self.songs):
-            if x.name == song_name:
-                self.songs.pop(i)
-                return f'Removed song {song_name} from album {self.name}.'
+        song = next(filter(lambda x: x.name == song_name, self.songs), None)
+        if song:
+            self.songs.remove(song)
+            return f'Removed song {song_name} from album {self.name}.'
+
         return f'Song is not in the album.'
 
     def publish(self):

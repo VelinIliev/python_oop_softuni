@@ -21,14 +21,14 @@ class Stack:
         return f'[{", ".join(self.data[::-1])}]'
 
 
-# s = Stack()
-# print(s.is_empty())
-# s.push("xxx")
-# s.push("xyy")
-# print(str(s))
-# print(s.top())
-# print(s.pop())
-# print(str(s))
+s = Stack()
+print(s.is_empty())
+s.push("xxx")
+s.push("xyy")
+print(str(s))
+print(s.top())
+print(s.pop())
+print(str(s))
 
 
 # stack = Stack()
