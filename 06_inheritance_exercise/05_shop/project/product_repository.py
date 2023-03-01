@@ -9,21 +9,15 @@ class ProductRepository:
         self.products.append(product)
 
     def find(self, product_name: str):
-        for product in self.products:
-            if product.name == product_name:
-                return product
+        product = next(filter(lambda x: x.name == product_name, self.products), None)
+        return product
 
     def remove(self, product_name: str):
-        print(self.products)
-        for i, product in enumerate(self.products):
-            if product.name == product_name:
-                self.products.pop(i)
+        product = next(filter(lambda x: x.name == product_name, self.products), None)
+        if product:
+            self.products.remove(product)
 
     def __repr__(self):
-        return_string = ""
-        for n, product in enumerate(self.products):
-            if n == len(self.products) - 1:
-                return_string += f'{product.name}: {product.quantity}'
-            else:
-                return_string += f'{product.name}: {product.quantity}\n'
-        return return_string
+        output = []
+        [output.append(f'{product.name}: {product.quantity}') for product in self.products]
+        return '\n'.join(output)
