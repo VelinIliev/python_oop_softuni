@@ -1,35 +1,26 @@
 class EmailValidator:
-    def __init__(self, min_length:int, mails: list, domains: list):
+    def __init__(self, min_length: int, mails: list, domains: list):
         self.min_length = min_length
         self.mails = mails
         self.domains = domains
 
     def __is_name_valid(self, name):
-        if len(name) < self.min_length:
-            return False
-        else:
-            return True
+        return len(name) >= self.min_length
 
     def __is_mail_valid(self, mail):
-        if mail in self.mails:
-            return True
-        else:
-            return False
+        return mail in self.mails
 
     def __is_domain_valid(self, domain):
-        if domain in self.domains:
-            return True
-        else:
-            return False
+        return domain in self.domains
 
     def validate(self, email):
-        x = email.split("@")
-        username = x[0]
-        mail, domain = x[1].split(".")
-        if self.__is_name_valid(username) and self.__is_mail_valid(mail) and self.__is_domain_valid(domain):
-            return True
-        else:
-            return False
+        data = email.split("@")
+        username = data[0]
+        mail, domain = data[1].split(".")
+        return all([self.__is_name_valid(username),
+                    self.__is_mail_valid(mail),
+                    self.__is_domain_valid(domain)
+                    ])
 
 
 mails = ["gmail", "softuni"]
