@@ -7,15 +7,15 @@ class Account:
     def get_id(self, pin):
         if pin != self.__pin:
             return f'Wrong pin'
-        else:
-            return self.__id
+
+        return self.__id
 
     def change_pin(self, old_pin, new_pin):
         if old_pin == self.__pin:
             self.__pin = new_pin
             return f'Pin changed'
-        else:
-            return f'Wrong pin'
+
+        return f'Wrong pin'
 
 
 account = Account(8827312, 100, 3421)
