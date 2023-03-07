@@ -132,4 +132,3 @@ print(p.calculate_total_weight())
 
 p.add_topping(mozzarella_topping)
 
-#TODO: check maybe changed conditions

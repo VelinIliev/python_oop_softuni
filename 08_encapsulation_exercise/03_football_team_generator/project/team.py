@@ -1,5 +1,6 @@
 from project.player import Player
 
+
 class Team:
     def __init__(self, name: str, rating: int):
         self.__name = name
@@ -7,14 +8,14 @@ class Team:
         self.__players = []
 
     def add_player(self, new_player: Player):
-        for player in self.__players:
-            if player.name == new_player.name:
-                return f'Player {new_player.name} has already joined'
+        if new_player in self.__players:
+            return f'Player {new_player.name} has already joined'
         self.__players.append(new_player)
         return f'Player {new_player.name} joined team {self.__name}'
 
     def remove_player(self, player_name):
-        for i, player in enumerate(self.__players):
-            if player.name == player_name:
-                return self.__players.pop(i)
+        player = next(filter(lambda x: x.name == player_name, self.__players), None)
+        if player:
+            self.__players.remove(player)
+            return player
         return f'Player {player_name} not found'
