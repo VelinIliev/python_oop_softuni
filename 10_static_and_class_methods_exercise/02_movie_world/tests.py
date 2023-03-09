@@ -1,6 +1,6 @@
-from customer import Customer
-from dvd import DVD
-from movie_world import MovieWorld
+from project.customer import Customer
+from project.dvd import DVD
+from project.movie_world import MovieWorld
 
 
 # c = Customer("Pesho", 22, 1)
@@ -8,24 +8,23 @@ from movie_world import MovieWorld
 # print(c.age) #, 22)
 # print(c.id) #, 1)
 
-# c = Customer("Pesho", 22, 1)
-# print(repr(c)) #, "1: Pesho of age 22 has 0 rented DVD's ()")
-#
-# dvd = DVD("B", 1, 2020, "January", 10)
-# print(dvd.name) #, "B")
-# print(dvd.id) #, 1)
-# print(dvd.creation_month) #, "January")
-# print(dvd.creation_year) #, 2020)
-# print(dvd.age_restriction) #, 10)
-# print(dvd.is_rented) #, False)
-# #
-# dvd = DVD.from_date(1, "A", "16.10.1997", 18)
-# print(dvd.name, "A")
-# print(dvd.id, 1)
-# print(dvd.creation_month, "October")
-# print(dvd.creation_year, 1997)
-# print(dvd.age_restriction, 18)
-# print(dvd.is_rented, False)
+c = Customer("Pesho", 22, 1)
+print(repr(c)) #, "1: Pesho of age 22 has 0 rented DVD's ()")
+
+dvd = DVD("B", 1, 2020, "January", 10)
+print(dvd.name) #, "B")
+print(dvd.id) #, 1)
+print(dvd.creation_month) #, "January")
+print(dvd.creation_year) #, 2020)
+print(dvd.age_restriction) #, 10)
+print(dvd.is_rented) #, False)
+dvd = DVD.from_date(1, "A", "16.10.1997", 18)
+print(dvd.name, "A")
+print(dvd.id, 1)
+print(dvd.creation_month, "October")
+print(dvd.creation_year, 1997)
+print(dvd.age_restriction, 18)
+print(dvd.is_rented, False)
 
 # dvd = DVD.from_date(1, "A", "16.10.1997", 18)
 # print(repr(dvd)) #, "1: A (October 1997) has age restriction 18. Status: not rented")

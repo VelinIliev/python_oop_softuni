@@ -12,10 +12,10 @@ class ExercisePlan:
         ExercisePlan.id += 1
         return ExercisePlan.id
 
-    @staticmethod
-    def from_hours(trainer_id: int, equipment_id: int, hours: int):
+    @classmethod
+    def from_hours(cls, trainer_id: int, equipment_id: int, hours: int):
         duration = hours * 60
-        return ExercisePlan(trainer_id, equipment_id, duration)
+        return cls(trainer_id, equipment_id, duration)
 
     def __repr__(self):
         return f'Plan <{self.id}> with duration {self.duration} minutes'

@@ -25,10 +25,9 @@ class MovieWorld:
             self.dvds.append(dvd)
 
     def rent_dvd(self, customer_id: int, dvd_id: int):
-        current_customer = [x for x in self.customers if x.id == customer_id][0]
-        current_dvd = [x for x in self.dvds if x.id == dvd_id][0]
-        is_rented = [x for x in current_customer.rented_dvds if current_dvd.id == x.id]
-        if is_rented:
+        current_customer = next(filter(lambda x: x.id == customer_id, self.customers), None)
+        current_dvd = next(filter(lambda x: x.id == dvd_id, self.dvds), None)
+        if current_dvd in current_customer.rented_dvds:
             return f'{current_customer.name} has already rented {current_dvd.name}'
         if current_dvd.is_rented:
             return f'DVD is already rented'
@@ -39,20 +38,19 @@ class MovieWorld:
         return f'{current_customer.name} has successfully rented {current_dvd.name}'
 
     def return_dvd(self, customer_id, dvd_id):
-        current_customer = [x for x in self.customers if x.id == customer_id][0]
-        if current_customer:
-            for i, dvd in enumerate(current_customer.rented_dvds):
-                if dvd.id == dvd_id:
-                    dvd.is_rented = False
-                    current_customer.rented_dvds.pop(i)
-                    return f"{current_customer.name} has successfully returned {dvd.name}"
+        current_customer = next(filter(lambda x: x.id == customer_id, self.customers), None)
+        current_dvd = next(filter(lambda x: x.id == dvd_id, self.dvds), None)
+        if current_customer and current_dvd in current_customer.rented_dvds:
+            current_customer.rented_dvds.remove(current_dvd)
+            current_dvd.is_rented = False
+            return f"{current_customer.name} has successfully returned {current_dvd.name}"
         return f'{current_customer.name} does not have that DVD'
 
     def __repr__(self):
-        return_string = ""
+        output = []
         for customer in self.customers:
-            return_string += f'{customer}\n'
+            output.append(f'{customer}')
         for dvd in self.dvds:
-            return_string += f'{dvd}\n'
-        return return_string
+            output.append(f'{dvd}')
+        return "\n".join(output)
 

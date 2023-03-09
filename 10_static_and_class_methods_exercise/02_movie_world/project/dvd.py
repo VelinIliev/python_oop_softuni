@@ -7,12 +7,12 @@ class DVD:
         self.age_restriction = age_restriction
         self.is_rented = False
 
-    @staticmethod
-    def from_date(id: int, name: str, date: str, age_restriction: int):
+    @classmethod
+    def from_date(cls, id: int, name: str, date: str, age_restriction: int):
         day, month, year = [int(x) for x in date.split(".")]
         months = ["January", "February", "March", "April", "May", "June", "July",
                   "August", "September", "October", "November", "December"]
-        return DVD(name, id, year, months[month-1], age_restriction)
+        return cls(name, id, year, months[month-1], age_restriction)
 
     def __repr__(self):
         return f'{self.id}: {self.name} ({self.creation_month} {self.creation_year}) ' \

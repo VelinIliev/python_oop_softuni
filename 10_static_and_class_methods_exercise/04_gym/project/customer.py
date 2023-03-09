@@ -15,10 +15,3 @@ class Customer:
     def __repr__(self):
         return f'Customer <{self.id}> {self.name}; Address: {self.address}; Email: {self.email}'
 
-
-# c = Customer("x", "X", "x")
-# d = Customer("x", "X", "x")
-# e = Customer("x", "X", "x")
-# print(c.id)
-# print(d.id)
-# print(e.id)

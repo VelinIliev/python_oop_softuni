@@ -14,45 +14,42 @@ class Gym:
         self.subscriptions = []
 
     def add_customer(self, customer: Customer):
-        added = [x for x in self.customers if x.id == customer.id]
-        if not added:
+        if customer not in self.customers:
             self.customers.append(customer)
 
     def add_trainer(self, trainer: Trainer):
-        added = [x for x in self.trainers if x.id == trainer.id]
-        if not added:
+        if trainer not in self.trainers:
             self.trainers.append(trainer)
 
     def add_equipment(self, equipment: Equipment):
-        added = [x for x in self.equipment if x.id == equipment.id]
-        if not added:
+        if equipment not in self.equipment:
             self.equipment.append(equipment)
 
     def add_plan(self, plan: ExercisePlan):
-        added = [x for x in self.plans if x.id == plan.id]
-        if not added:
+        if plan not in self.plans:
             self.plans.append(plan)
 
     def add_subscription(self, subscription: Subscription):
-        added = [x for x in self.subscriptions if x.id == subscription.id]
-        if not added:
+        if subscription not in self.subscriptions:
             self.subscriptions.append(subscription)
 
     def subscription_info(self, subscription_id):
-        current_subscription = [x for x in self.subscriptions if x.id == subscription_id][0]
+        current_subscription = next(filter(lambda x: x.id == subscription_id, self.subscriptions), None)
         customer_id = current_subscription.customer_id
-        current_customer = [x for x in self.customers if x.id == customer_id][0]
+        current_customer = next(filter(lambda x: x.id == customer_id, self.customers), None)
         trainer_id = current_subscription.trainer_id
-        current_trainer = [x for x in self.trainers if x.id == trainer_id][0]
+        current_trainer = next(filter(lambda x: x.id == trainer_id, self.trainers), None)
         plan_id = current_subscription.exercise_id
-        current_plan = [x for x in self.plans if x.id == plan_id][0]
+        current_plan = next(filter(lambda x: x.id == plan_id, self.plans), None)
         equipment_id = current_plan.equipment_id
-        current_equipment = [x for x in self.equipment if x.id == equipment_id][0]
+        current_equipment = next(filter(lambda x: x.id == equipment_id, self.equipment), None)
 
-        return_string = ""
-        return_string += f'{current_subscription}\n'
-        return_string += f'{current_customer}\n'
-        return_string += f'{current_trainer}\n'
-        return_string += f'{current_equipment}\n'
-        return_string += f'{current_plan}'
-        return return_string
+        output = [
+            "",
+            f'{current_subscription}',
+            f'{current_customer}',
+            f'{current_trainer}',
+            f'{current_equipment}',
+            f'{current_plan}'
+        ]
+        return "\n".join(output)

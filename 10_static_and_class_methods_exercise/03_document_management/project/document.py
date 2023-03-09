@@ -10,9 +10,9 @@ class Document:
         self.file_name = file_name
         self.tags = []
 
-    @staticmethod
-    def from_instances(id: int, category: Category, topic: Topic, file_name: str):
-        return Document(id, category.id, topic.id, file_name)
+    @classmethod
+    def from_instances(cls, id: int, category: Category, topic: Topic, file_name: str):
+        return cls(id, category.id, topic.id, file_name)
 
     def add_tag(self, tag_content: str):
         if tag_content not in self.tags:
