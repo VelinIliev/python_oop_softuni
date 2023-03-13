@@ -2,14 +2,14 @@ from project.animals.birds import Owl, Hen
 from project.food import Food, Vegetable, Meat, Fruit, Seed
 from project.animals.mammals import Tiger, Cat, Dog, Mouse
 
-# owl = Owl("Pip", 10, 10)
-# print(owl)
-# meat = Meat(4)
-# print(owl.make_sound())
-# owl.feed(meat)
-# veg = Vegetable(1)
-# print(owl.feed(veg))
-# print(owl)
+owl = Owl("Pip", 10, 10)
+print(owl)
+meat = Meat(4)
+print(owl.make_sound())
+owl.feed(meat)
+veg = Vegetable(1)
+print(owl.feed(veg))
+print(owl)
 
 # hen = Hen("Harry", 10, 10)
 # veg = Vegetable(3)

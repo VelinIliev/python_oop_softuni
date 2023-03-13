@@ -22,11 +22,7 @@ class Group:
         return len(self.people)
 
     def __add__(self, other):
-        members = []
-        for member in self.people:
-            members.append(member)
-        for member in other.people:
-            members.append(member)
+        members = [*self.people, *other.people]
         group_name = f'{self.name} {other.name}'
         return Group(group_name, members)
 

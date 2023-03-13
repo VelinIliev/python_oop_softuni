@@ -1,5 +1,6 @@
 from project.formula_teams.formula_team import FormulaTeam
 
+
 class RedBullTeam(FormulaTeam):
     expenses = 250000
 
