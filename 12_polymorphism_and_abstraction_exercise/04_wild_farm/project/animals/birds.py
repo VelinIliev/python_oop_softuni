@@ -2,19 +2,23 @@ from project.animals.animal import Animal, Bird
 
 
 class Owl(Bird):
-    def make_sound(self):
+
+    @staticmethod
+    def make_sound():
         return f'Hoot Hoot'
 
     def feed(self, food):
-        if food.__class__.__name__ == "Meat":
+        food_name = food.__class__.__name__
+        if food_name == "Meat":
             self.weight += (.25 * food.quantity)
             self.food_eaten += food.quantity
-        else:
-            return f'{self.__class__.__name__} does not eat {food.__class__.__name__}!'
+        return f'{self.__class__.__name__} does not eat {food_name}!'
 
 
 class Hen(Bird):
-    def make_sound(self):
+
+    @staticmethod
+    def make_sound():
         return f'Cluck'
 
     def feed(self, food):

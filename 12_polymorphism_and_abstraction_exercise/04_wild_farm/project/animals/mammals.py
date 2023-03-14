@@ -2,51 +2,57 @@ from project.animals.animal import Mammal
 
 
 class Mouse(Mammal):
-    def make_sound(self):
+
+    @staticmethod
+    def make_sound():
         return f'Squeak'
 
     def feed(self, food):
-        if food.__class__.__name__ == "Vegetable" or \
-                food.__class__.__name__ == "Fruit":
+        food_name = food.__class__.__name__
+        if food_name in ["Vegetable", "Fruit"]:
             self.weight += (.1 * food.quantity)
             self.food_eaten += food.quantity
-        else:
-            return f'{self.__class__.__name__} does not eat {food.__class__.__name__}!'
+        return f'{self.__class__.__name__} does not eat {food_name}!'
 
 
 class Cat(Mammal):
-    def make_sound(self):
+
+    @staticmethod
+    def make_sound():
         return f'Meow'
 
     def feed(self, food):
-        if food.__class__.__name__ == "Meat" or \
-                food.__class__.__name__ == "Vegetable":
+        food_name = food.__class__.__name__
+        if food_name in ["Meat", "Vegetable"]:
             self.weight += (.3 * food.quantity)
             self.food_eaten += food.quantity
-        else:
-            return f'{self.__class__.__name__} does not eat {food.__class__.__name__}!'
+        return f'{self.__class__.__name__} does not eat {food_name}!'
 
 
 class Dog(Mammal):
-    def make_sound(self):
+
+    @staticmethod
+    def make_sound():
         return f'Woof!'
 
     def feed(self, food):
-        if food.__class__.__name__ == "Meat":
+        food_name = food.__class__.__name__
+        if food_name == "Meat":
             self.weight += (.4 * food.quantity)
             self.food_eaten += food.quantity
-        else:
-            return f'{self.__class__.__name__} does not eat {food.__class__.__name__}!'
+        return f'{self.__class__.__name__} does not eat {food_name}!'
 
 
 class Tiger(Mammal):
-    def make_sound(self):
+
+    @staticmethod
+    def make_sound():
         return f'ROAR!!!'
 
     def feed(self, food):
-        if food.__class__.__name__ == "Meat":
+        food_name = food.__class__.__name__
+        if food_name == "Meat":
             self.weight += (1 * food.quantity)
             self.food_eaten += food.quantity
-        else:
-            return f'{self.__class__.__name__} does not eat {food.__class__.__name__}!'
+        return f'{self.__class__.__name__} does not eat {food_name}!'
 

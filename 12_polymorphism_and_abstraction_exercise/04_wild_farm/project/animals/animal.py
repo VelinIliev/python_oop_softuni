@@ -2,18 +2,20 @@ from abc import ABC, abstractmethod
 
 
 class Animal(ABC):
+
     def __init__(self, name, weight, food_eaten=0):
         self.name = name
         self.weight = weight
         self.food_eaten = food_eaten
 
+    @staticmethod
     @abstractmethod
-    def make_sound(self):
-        return None
+    def make_sound():
+        ...
 
     @abstractmethod
     def feed(self, food):
-        return None
+        ...
 
 
 class Bird(Animal, ABC):

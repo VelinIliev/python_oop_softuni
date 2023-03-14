@@ -13,11 +13,7 @@ class Account:
     def add_transaction(self, amount):
         if not isinstance(amount, int):
             raise ValueError("please use int for amount")
-        elif self.balance + amount < 0:
-            raise ValueError('sorry cannot go in debt!')
-        else:
-            self._transactions.append(amount)
-            return f'New balance: {self.balance}'
+        return self.handle_transaction(amount)
 
     @property
     def balance(self):
@@ -34,6 +30,9 @@ class Account:
 
     def __getitem__(self, item):
         return self._transactions[item]
+
+    def __reversed__(self):
+        return reversed(self._transactions)
 
     def __eq__(self, other):
         return self.balance == other.balance
