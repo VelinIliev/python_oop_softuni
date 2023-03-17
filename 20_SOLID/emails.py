@@ -50,14 +50,19 @@ class Email(IEmail):
         self.__receiver = None
         self.__content = None
 
-    def get_protocol(self):
-        return protocols[self.protocol] if self.protocol in protocols else self.protocol
+    @property
+    def protocol(self):
+        return self.__protocol
+
+    @protocol.setter
+    def protocol(self, value):
+        self.__protocol = protocols[value] if value in protocols else value
 
     def set_sender(self, sender):
-        self.__sender = f'{self.get_protocol()} {sender}'
+        self.__sender = f'{self.__protocol} {sender}'
 
     def set_receiver(self, receiver):
-        self.__receiver = f'{self.get_protocol()} {receiver}'
+        self.__receiver = f'{self.__protocol} {receiver}'
 
     def set_content(self, content):
         self.__content = content
