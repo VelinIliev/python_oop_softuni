@@ -1,19 +1,21 @@
 class countdown_iterator:
     def __init__(self, count):
         self.count = count
-        self.i = count
+        self.number = count + 1
+        self.end = 0
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        while self.i > -1:
-            current = self.i
-            self.i -= 1
-            return current
-        raise StopIteration
+
+        if self.number == self.end:
+            raise StopIteration
+
+        self.number -= 1
+        return self.number
 
 
-iterator = countdown_iterator(20)
+iterator = countdown_iterator(10)
 for item in iterator:
     print(item, end=" ")

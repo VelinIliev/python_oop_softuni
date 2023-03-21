@@ -1,26 +1,21 @@
 class sequence_repeat:
     def __init__(self, sequence, number):
         self.sequence = sequence
-        self.number = number
-        self.i = 0
-        self.end = number
-        self.len = len(sequence) - 1
+        self.index = -1
+        self.end = number - 1
+        self.len = len(self.sequence)
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.i <= self.end - 1:
-            index = self.i
-            while index > self.len:
-                index = index - (self.len + 1)
-            current = self.sequence[index]
-            self.i += 1
-            return current
-        else:
+        if self.index == self.end:
             raise StopIteration
 
+        self.index += 1
+        return self.sequence[self.index % self.len]
 
-result = sequence_repeat('abcdef', 8)
+
+result = sequence_repeat('abcdef', 40)
 for item in result:
-    print(item, end ='')
+    print(item, end='')
