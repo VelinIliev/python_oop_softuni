@@ -4,7 +4,9 @@ def type_check(type):
             if all([isinstance(x, type) for x in args]):
                 return function(*args)
             return f'Bad Type'
+
         return wrapper
+
     return decorator
 
 

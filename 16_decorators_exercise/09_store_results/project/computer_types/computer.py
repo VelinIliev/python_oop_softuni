@@ -1,7 +1,11 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Computer(ABC):
+    processors = {}
+    rams = {}
+    computer_type = ''
+
     def __init__(self, manufacturer, model):
         self.manufacturer = manufacturer
         self.model = model
@@ -29,9 +33,17 @@ class Computer(ABC):
             raise ValueError('Model name cannot be empty.')
         self.__model = value
 
-    @abstractmethod
-    def configure_computer(self, processor, ram):
-        ...
+    def configure_computer(self, processor: str, ram: int):
+        if processor not in self.processors:
+            raise ValueError(f'{processor} is not compatible with {self.computer_type} {self.manufacturer} {self.model}!')
+        if ram not in self.rams:
+            raise ValueError(f'{ram}GB RAM is not compatible with {self.computer_type} {self.manufacturer} {self.model}!')
+
+        self.processor = processor
+        self.ram = ram
+        self.price += self.processors[processor] + self.find_power(ram) * 100
+
+        return f'Created {self.manufacturer} {self.model} with {self.processor} and {self.ram}GB RAM for {self.price}$.'
 
     def __repr__(self):
         return f'{self.manufacturer} {self.model} with {self.processor} and {self.ram}GB RAM'
