@@ -1,10 +1,10 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class Computer(ABC):
-    processors = {}
-    rams = {}
-    computer_type = ''
+    # processors = {}
+    # rams = {}
+    # computer_type = ''
 
     def __init__(self, manufacturer, model):
         self.manufacturer = manufacturer
@@ -12,6 +12,21 @@ class Computer(ABC):
         self.processor = None
         self.ram = None
         self.price = 0
+
+    @property
+    @abstractmethod
+    def processors(self):
+        ...
+
+    @property
+    @abstractmethod
+    def rams(self):
+        ...
+
+    @property
+    @abstractmethod
+    def computer_type(self):
+        ...
 
     @property
     def manufacturer(self):
@@ -35,9 +50,12 @@ class Computer(ABC):
 
     def configure_computer(self, processor: str, ram: int):
         if processor not in self.processors:
-            raise ValueError(f'{processor} is not compatible with {self.computer_type} {self.manufacturer} {self.model}!')
+            raise ValueError(
+                f'{processor} is not compatible with {self.computer_type} {self.manufacturer} {self.model}!')
+
         if ram not in self.rams:
-            raise ValueError(f'{ram}GB RAM is not compatible with {self.computer_type} {self.manufacturer} {self.model}!')
+            raise ValueError(
+                f'{ram}GB RAM is not compatible with {self.computer_type} {self.manufacturer} {self.model}!')
 
         self.processor = processor
         self.ram = ram

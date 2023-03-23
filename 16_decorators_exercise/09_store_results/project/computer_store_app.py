@@ -17,9 +17,10 @@ class ComputerStoreApp:
             raise ValueError(f"{type_computer} is not a valid type computer!")
 
         new_computer = mapper[type_computer](manufacturer, model)
+        configuration = new_computer.configure_computer(processor, ram)
         self.warehouse.append(new_computer)
 
-        return new_computer.configure_computer(processor, ram)
+        return configuration
 
     def sell_computer(self, client_budget: int, wanted_processor: str, wanted_ram: int):
         computer = next(filter(lambda c: c.price <= client_budget \
