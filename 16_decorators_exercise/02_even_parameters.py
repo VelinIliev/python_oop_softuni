@@ -1,4 +1,4 @@
-from past.builtins import reduce
+from functools import reduce
 
 
 def even_parameters(function):

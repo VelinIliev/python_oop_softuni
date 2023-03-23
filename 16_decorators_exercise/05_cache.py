@@ -1,12 +1,11 @@
 def cache(function):
-    log = {}
 
     def wrapper(arg):
-        result = (function(arg))
-        log[arg] = result
-        return result
+        if arg not in wrapper.log:
+            wrapper.log[arg] = (function(arg))
+        return wrapper.log[arg]
 
-    wrapper.log = log
+    wrapper.log = {}
     return wrapper
 
 
@@ -18,11 +17,7 @@ def fibonacci(n):
         return fibonacci(n - 1) + fibonacci(n - 2)
 
 
-fibonacci(3)
+fibonacci(50)
 print(fibonacci.log)
 
-fibonacci(4)
-print(fibonacci.log)
 
-fibonacci(15)
-print(fibonacci.log)
