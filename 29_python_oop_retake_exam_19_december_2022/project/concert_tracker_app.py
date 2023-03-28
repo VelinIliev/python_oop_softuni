@@ -109,14 +109,10 @@ class ConcertTrackerApp:
         if len(members) != 3:
             raise Exception(f"{band_name} can't start the concert because it doesn't have enough members!")
 
-        stat_concert = True
         for member in band.members:
             type_musician = member.__class__.__name__
             if skills_needed[concert.genre][type_musician] not in member.skills:
-                stat_concert = False
-
-        if not stat_concert:
-            raise Exception(f"The {band_name} band is not ready to play at the concert!")
+                raise Exception(f"The {band_name} band is not ready to play at the concert!")
 
         profit = (concert.audience * concert.ticket_price) - concert.expenses
 
