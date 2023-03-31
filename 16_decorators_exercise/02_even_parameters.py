@@ -3,9 +3,8 @@ from functools import reduce
 
 def even_parameters(function):
     def wrapper(*params):
-        if all([isinstance(x, int) for x in params]):
-            if all([x % 2 == 0 for x in params]):
-                return function(*params)
+        if all([isinstance(x, int) and x % 2 == 0 for x in params]):
+            return function(*params)
         return f'Please use only even numbers!'
 
     return wrapper
