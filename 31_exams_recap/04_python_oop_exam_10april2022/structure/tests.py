@@ -21,3 +21,8 @@ print(first_player)
 print(second_player)
 controller.next_day()
 print(controller)
+# players = [first_player, second_player]
+# food = [apple, cheese]
+# output = [*[x.__str__() for x in players], *[x.details() for x in food]]
+
+# print("\n".join(output))

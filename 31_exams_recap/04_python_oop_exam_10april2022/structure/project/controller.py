@@ -97,12 +97,4 @@ class Controller:
             self.sustain(player.name, "Drink")
 
     def __str__(self):
-        output = []
-
-        for player in self.players:
-            output.append(player.__str__())
-
-        for supply in self.supplies:
-            output.append(supply.details())
-
-        return "\n".join(output)
+        return "\n".join([*[p.__str__() for p in self.players], *[s.details() for s in self.supplies]])
