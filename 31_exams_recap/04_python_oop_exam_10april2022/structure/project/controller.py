@@ -49,10 +49,7 @@ class Controller:
             if not sustenance:
                 raise Exception(f"There are no {sustenance_type.lower()} supplies left!")
 
-            if player.stamina + sustenance.energy > 100:
-                player.stamina = 100
-            else:
-                player.stamina += sustenance.energy
+            player.stamina = 100 if player.stamina + sustenance.energy > 100 else player.stamina + sustenance.energy
 
             return f'{player_name} sustained successfully with {sustenance.name}.'
 
@@ -61,38 +58,29 @@ class Controller:
         player1 = next(filter(lambda x: x.name == first_player_name, self.players), None)
         player2 = next(filter(lambda x: x.name == second_player_name, self.players), None)
 
-        not_enough = []
+        not_enough_stamina = []
+
         for player in [player1, player2]:
             if player.stamina == 0:
-                not_enough.append(f'Player {player.name} does not have enough stamina.')
+                not_enough_stamina.append(f'Player {player.name} does not have enough stamina.')
 
-        if not_enough:
-            return "\n".join(not_enough)
-
-        winner = None
+        if not_enough_stamina:
+            return "\n".join(not_enough_stamina)
 
         if player1.stamina > player2.stamina:
             player1, player2 = player2, player1
 
         player2.stamina -= player1.stamina / 2
 
-        if player1.stamina - player2.stamina / 2 < 0:
-            player1.stamina = 0
-            winner = player2
-        else:
-            player1.stamina -= player2.stamina / 2
+        player1.stamina = 0 if player1.stamina - player2.stamina / 2 < 0 else player1.stamina - player2.stamina / 2
 
-        if not winner:
-            winner = player1 if player1.stamina > player2.stamina else player2
+        winner = player1 if player1.stamina > player2.stamina else player2
 
         return f'Winner: {winner.name}'
 
     def next_day(self):
         for player in self.players:
-            if player.stamina - (player.age * 2) < 0:
-                player.stamina = 0
-            else:
-                player.stamina -= player.age * 2
+            player.stamina = 0 if player.stamina - (player.age * 2) < 0 else player.stamina - player.age * 2
             self.sustain(player.name, "Food")
             self.sustain(player.name, "Drink")
 
